@@ -9,15 +9,33 @@
     <div class="article-main">
       <header class="article-header">
         <%- partial('post/title', {class_name: 'p-name article-title'}) %>
+
+         <%# 检查 post.hide_meta 是否不为 true %>
+        <% if (!post.hide_meta) { %>
         <div class='meta-info-bar'>
+          
+          <%# 检查 post.hide_date 是否不为 true %>
+          <% if (!post.hide_date) { %>
           <%- partial('post/date', {class_name: 'meta-info', date_format: null}) %>
+          <% } %>
+
+          <%# 检查 post.hide_category 是否不为 true %>
+          <% if (!post.hide_category) { %>
           <div class="need-seperator meta-info">
             <%- partial('post/category') %>  
           </div>
+          <% } %>
+
+          <%# 检查 post.hide_wordcount 是否不为 true %>
+          <% if (!post.hide_wordcount) { %>
           <div class="wordcount need-seperator meta-info">
             <%- symbolsCount(post) %> <%- __('words') %> 
           </div>
+          <% } %>
+          
         </div>
+        <% } %>
+        
         <%- partial('post/tag') %>
       </header>
       <div class="e-content article-entry" itemprop="articleBody">
