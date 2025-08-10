@@ -44,9 +44,9 @@
         <% } else if (is_home() && !post.excerpt && theme.home.style != 'detail') { %>
           <div class="truncate-text">
             <% if(description){ %>
-              <%- strip_html(post.description) %>
+              <%- strip_html(post.description).trim().replace(/\n/g, '<br>') %>
             <% } else{ %>
-              <%- truncate(strip_html(post.content), {length: 500}) %>
+              <%- truncate(strip_html(post.content).trim(), {length: 200}).replace(/\n/g, '<br>') %>
             <% } %>
           </div>
         <% } else { %>
